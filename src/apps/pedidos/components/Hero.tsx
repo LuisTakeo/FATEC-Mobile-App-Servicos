@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../styles/colors';
-import { useResponsive } from '../styles/responsive';
+import { colors } from '../../../styles/colors';
+import { useResponsive } from '../../../styles/responsive';
 
 interface HeroProps {
   contentPadding: number;
@@ -39,7 +39,7 @@ export const Hero: React.FC<HeroProps> = ({ contentPadding }) => {
 
   return (
     <View style={styles.hero}>
-      <Text style={styles.kicker}>Pedido rápido</Text>
+      <Text style={styles.kicker}>Pedido rapido</Text>
       <Text style={styles.title}>Monte seu combo em poucos toques</Text>
       <Text style={styles.subtitle}>
         Escolha um produto, uma bebida, confira o total e confirme o pedido.

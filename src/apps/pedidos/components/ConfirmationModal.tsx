@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
-import { colors } from '../styles/colors';
-import { useResponsive } from '../styles/responsive';
+import { colors } from '../../../styles/colors';
+import { useResponsive } from '../../../styles/responsive';
 
 interface ConfirmationModalProps {
   visible: boolean;
@@ -114,18 +114,6 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
     },
     primaryButtonText: {
       color: colors.text.dark,
-      fontSize: isDesktop ? 14 : isMedium ? 13 : isSmall ? 11 : 12,
-      fontWeight: '700',
-      textTransform: 'uppercase',
-      letterSpacing: 0.5,
-    },
-    secondaryButton: {
-      backgroundColor: colors.border,
-      borderWidth: 1,
-      borderColor: colors.borderLight,
-    },
-    secondaryButtonText: {
-      color: colors.text.primary,
       fontSize: isDesktop ? 14 : isMedium ? 13 : isSmall ? 11 : 12,
       fontWeight: '700',
       textTransform: 'uppercase',

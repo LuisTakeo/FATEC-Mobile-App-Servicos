@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import { colors } from '../styles/colors';
-import { useResponsive } from '../styles/responsive';
+import { Picker } from '@react-native-picker/picker';
+import { colors } from '../../../styles/colors';
+import { useResponsive } from '../../../styles/responsive';
 import { MenuItem } from '../types/menu';
 
 interface MenuSelectButtonsProps {
@@ -31,6 +32,19 @@ export const MenuSelectButtons: React.FC<MenuSelectButtonsProps> = ({
       marginBottom: 10,
       textTransform: 'uppercase',
       letterSpacing: 0.5,
+    },
+    pickerWrapper: {
+      backgroundColor: colors.surface,
+      borderRadius: isDesktop ? 12 : isMedium ? 11 : isSmall ? 9 : 10,
+      borderWidth: 1,
+      borderColor: colors.border,
+      paddingHorizontal: isDesktop ? 10 : isMedium ? 8 : isSmall ? 6 : 8,
+      marginBottom: isDesktop ? 12 : isMedium ? 10 : isSmall ? 8 : 10,
+      overflow: 'hidden',
+    },
+    picker: {
+      height: isDesktop ? 44 : isMedium ? 40 : isSmall ? 36 : 40,
+      color: colors.text.primary,
     },
     buttonsContainer: {
       flexDirection: 'row',
@@ -107,6 +121,22 @@ export const MenuSelectButtons: React.FC<MenuSelectButtonsProps> = ({
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
+      <View style={styles.pickerWrapper}>
+        <Picker
+          selectedValue={selectedValue}
+          onValueChange={onSelectChange}
+          dropdownIconColor={colors.text.primary}
+          style={styles.picker}
+        >
+          {items.map((item) => (
+            <Picker.Item
+              key={`${item.value}-picker`}
+              label={item.label}
+              value={item.value}
+            />
+          ))}
+        </Picker>
+      </View>
       <View style={styles.buttonsContainer}>
         {items.map((item) => (
           <TouchableOpacity

@@ -1,16 +1,16 @@
 import React from 'react';
 import { ScrollView, StatusBar, StyleSheet, View, Platform } from 'react-native';
-import { colors } from '../styles/colors';
-import { useResponsive } from '../styles/responsive';
+import { colors } from '../../../styles/colors';
+import { useResponsive } from '../../../styles/responsive';
 import { products, drinks } from '../constants/menu';
 import { Hero } from './Hero';
 import { SummaryCard } from './SummaryCard';
-import { MenuSelectButtons } from './MenuSelectButtons';
+import { MenuSection } from './MenuSection';
 import { TotalCard } from './TotalCard';
 import { ConfirmButton } from './ConfirmButton';
 import { BackgroundOrbs } from './BackgroundOrbs';
 
-interface CompactLayoutProps {
+interface MainLayoutProps {
   productValue: string;
   setProductValue: (value: string) => void;
   drinkValue: string;
@@ -21,7 +21,7 @@ interface CompactLayoutProps {
   onConfirmOrder: () => void;
 }
 
-export const CompactLayout: React.FC<CompactLayoutProps> = ({
+export const MainLayout: React.FC<MainLayoutProps> = ({
   productValue,
   setProductValue,
   drinkValue,
@@ -31,9 +31,10 @@ export const CompactLayout: React.FC<CompactLayoutProps> = ({
   total,
   onConfirmOrder,
 }) => {
-  const { isDesktop, isMedium, isSmall } = useResponsive();
+  const { isDesktop, isMedium } = useResponsive();
 
   const contentPadding = isDesktop ? 40 : isMedium ? 30 : 20;
+  const maxContentWidth = isDesktop ? 900 : '100%';
 
   const styles = StyleSheet.create({
     screen: {
@@ -48,25 +49,9 @@ export const CompactLayout: React.FC<CompactLayoutProps> = ({
     },
     contentWrapper: {
       width: Platform.OS === 'web' ? '100%' : 'auto',
-      maxWidth: isDesktop ? 600 : '100%',
-      paddingTop: isDesktop ? 60 : isMedium ? 50 : 40,
+      maxWidth: maxContentWidth,
+      paddingTop: isDesktop ? 80 : isMedium ? 70 : 60,
       paddingBottom: 48,
-    },
-    menuSection: {
-      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-      borderRadius: isDesktop ? 20 : isMedium ? 16 : isSmall ? 12 : 14,
-      padding: isDesktop ? 24 : isMedium ? 20 : isSmall ? 14 : 16,
-      marginBottom: isDesktop ? 28 : isMedium ? 24 : isSmall ? 16 : 20,
-      borderWidth: 1,
-      borderColor: colors.border,
-    },
-    sectionTitle: {
-      color: colors.accent.secondary,
-      fontSize: isDesktop ? 13 : isMedium ? 12 : isSmall ? 10 : 11,
-      fontWeight: '700',
-      textTransform: 'uppercase',
-      letterSpacing: 1,
-      marginBottom: isDesktop ? 16 : isMedium ? 14 : isSmall ? 10 : 12,
     },
   });
 
@@ -78,7 +63,6 @@ export const CompactLayout: React.FC<CompactLayoutProps> = ({
       <ScrollView
         contentContainerStyle={styles.scrollViewContent}
         showsVerticalScrollIndicator={false}
-        scrollEnabled={true}
       >
         <View style={styles.contentWrapper}>
           <Hero contentPadding={contentPadding} />
@@ -89,21 +73,19 @@ export const CompactLayout: React.FC<CompactLayoutProps> = ({
             total={total}
           />
 
-          <View style={styles.menuSection}>
-            <MenuSelectButtons
-              label="Escolha seu prato"
-              items={products}
-              selectedValue={productValue}
-              onSelectChange={setProductValue}
-            />
+          <MenuSection
+            title="1. Escolha de produto"
+            items={products}
+            selectedValue={productValue}
+            onSelectChange={setProductValue}
+          />
 
-            <MenuSelectButtons
-              label="Escolha sua bebida"
-              items={drinks}
-              selectedValue={drinkValue}
-              onSelectChange={setDrinkValue}
-            />
-          </View>
+          <MenuSection
+            title="2. Escolha de bebida"
+            items={drinks}
+            selectedValue={drinkValue}
+            onSelectChange={setDrinkValue}
+          />
 
           <TotalCard
             product={selectedProduct}

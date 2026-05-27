@@ -1,11 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { colors } from '../styles/colors';
-import { useResponsive } from '../styles/responsive';
+import { colors } from '../../../styles/colors';
+import { useResponsive } from '../../../styles/responsive';
 
-interface BackgroundOrbsProps {}
-
-export const BackgroundOrbs: React.FC<BackgroundOrbsProps> = () => {
+export const BackgroundOrbs: React.FC = () => {
   const { width } = useResponsive();
   const isSmall = width < 480;
 

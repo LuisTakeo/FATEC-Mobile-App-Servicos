@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../styles/colors';
-import { useResponsive } from '../styles/responsive';
+import { colors } from '../../../styles/colors';
+import { useResponsive } from '../../../styles/responsive';
 import { MenuItem } from '../types/menu';
 
 interface TotalCardProps {

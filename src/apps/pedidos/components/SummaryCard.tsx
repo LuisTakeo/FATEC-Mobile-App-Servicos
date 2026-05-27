@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../styles/colors';
-import { useResponsive } from '../styles/responsive';
+import { colors } from '../../../styles/colors';
+import { useResponsive } from '../../../styles/responsive';
 import { MenuItem } from '../types/menu';
 
 interface SummaryCardProps {
@@ -45,7 +45,7 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ product, drink, total 
 
   return (
     <View style={styles.summaryCard}>
-      <Text style={styles.summaryLabel}>Pedido rápido</Text>
+      <Text style={styles.summaryLabel}>Pedido rapido</Text>
       <Text style={styles.summaryText}>
         {product.label} + {drink.label}
       </Text>

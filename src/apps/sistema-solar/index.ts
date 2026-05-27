@@ -1,0 +1,1 @@
+export { SolarSystemScreen } from './SolarSystemScreen';
